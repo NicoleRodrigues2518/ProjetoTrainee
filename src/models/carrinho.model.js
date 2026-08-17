@@ -2,7 +2,7 @@ const mongoose = require ('mongoose')
 
 const itemCarrinhoSchema = new mongoose.Schema({
     id_livro:{
-        type: mongoose.Schema.Types.ObjectID,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Livro',
         required:true
     },
@@ -12,9 +12,9 @@ const itemCarrinhoSchema = new mongoose.Schema({
         min: 1
     }
 }, {_id: false});
-
 const carrinhoSchema = new mongoose.Schema({
     itens: [itemCarrinhoSchema]
+
 });
 
 module.exports = mongoose.model('Carrinho', carrinhoSchema);
