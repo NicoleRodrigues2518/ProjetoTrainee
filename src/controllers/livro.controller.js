@@ -2,7 +2,23 @@ const LivroModel = require('../models/livro.model');
 
 async function listaLivros(req,res){
     try{
-        const livrosListados = await LivroModel.find();
+        const {precoMinimo, precoMaximo, temEstoque} = req.query;
+        const filtro = {};
+       
+        if (precoMinimo || precoMaximo){
+            filtro.preco = {};
+            if(precoMinimo){
+                filtro.preco.$gte = Number (precoMinimo);
+            }
+            if(precoMaximo){
+                filtro.preco.$lte = umber (precoMaximo);
+            }
+        }
+        if(temEstoque === 'true'){
+            filtro.quantidade_estoque = {$gt:0};
+        }
+
+        const livrosListados = await LivroModel.find(filtro);
         res.status(200).json(livrosListados);
     }catch(error){
         res.status(500).send(error.message);
