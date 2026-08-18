@@ -6,7 +6,7 @@ router.get("/livro", listaLivros);
 
 router.get("/livro/:id", listaLivro);
 
-router.post("/livros", criaLivro);
+router.post("/livro", criaLivro);
 
 router.delete("/livro/:id", removeLivro);
 

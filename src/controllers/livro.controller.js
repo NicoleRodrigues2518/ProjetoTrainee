@@ -11,7 +11,7 @@ async function listaLivros(req,res){
                 filtro.preco.$gte = Number (precoMinimo);
             }
             if(precoMaximo){
-                filtro.preco.$lte = umber (precoMaximo);
+                filtro.preco.$lte = Number (precoMaximo);
             }
         }
         if(temEstoque === 'true'){
