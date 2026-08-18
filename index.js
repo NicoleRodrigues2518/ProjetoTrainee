@@ -1,8 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require ('mongoose');
 
-const livroRoutes = require ('./routes/livrro.routes');
-const carrinhoRoutes = require('./routes/carrinho.routes');
+const livroRoutes = require ('./src/routes/livro.routes');
+const carrinhoRoutes = require('./src/routes/carrinho.routes');
 
 const app = express();
 
@@ -11,7 +12,8 @@ app.use(express.json());
 app.use(livroRoutes);
 app.use(carrinhoRoutes);
 
-mongoose.connect('mongodb://127.0.0.1:27017/simon_books')
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/simon_books';
+mongoose.connect(MONGO_URI)
     .then(() => {
         console.log('Conectado ao MongoDB com sucesso!');
         app.listen(3000, () => {

@@ -2,7 +2,7 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const mongoose = require('mongoose');
 require('dotenv').config();
-const Livro = require('./models/Livro'); // essa parte deve ser ajustada de acordo com o caminho escolhido
+const Livro = require('./src/models/livro.model'); // essa parte deve ser ajustada de acordo com o caminho escolhido
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/simon_books';
 
 async function popularBanco() {
@@ -18,7 +18,7 @@ async function popularBanco() {
     const livros = [];
 
     // leitura do CSV e formatação dos dados
-    fs.createReadStream('livros.csv')
+    fs.createReadStream('./database/livros.csv')
       .pipe(csv())
       .on('data', (row) => {
         livros.push({

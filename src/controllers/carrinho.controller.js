@@ -84,7 +84,6 @@ async function finalizarCompra(req, res) {
 }
 
 
-
 module.exports = {
     listaCarrinho,
     criaItem,
